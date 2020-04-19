@@ -1,5 +1,5 @@
 import numpy as np
-import mathplotlib.pyplot as plt
+import matplotlib.pyplot as plt
 
 
 pmin, pmax, qmin, qmax = -2.5, 1.5, -2, 2
@@ -14,7 +14,9 @@ image = np.zeros((ppoints, qpoints))
 
 
 for ip, p in enumerate(np.linspace(pmin, pmax, ppoints)):
-    c = p + 1j * q
+    for iq, q in enumerate(np.linspace(qmin, qmax, qpoints)):
+        c = p + 1j * q
+
     z = 0
 
     for k in range(max_iterations):
@@ -24,7 +26,7 @@ for ip, p in enumerate(np.linspace(pmin, pmax, ppoints)):
             image[ip,iq] = 1
             break
 
-#plt.xticks([])
-#plt.yticks([])
+plt.xticks([])
+plt.yticks([])
 
-#plt.imshow
+plt.imshow(-image.T, cmap='Greys')
